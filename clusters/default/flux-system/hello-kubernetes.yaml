@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hello-kubernetes
+  namespace: flux-system
+spec:
+  interval: 1m
+  timeout: 1m
+  chart:
+    spec:
+      chart: ./charts/hello-kubernetes
+      sourceRef:
+        kind: GitRepository
+        name: oracle-gitops-workshop
+      interval: 1m
+  targetNamespace: default
+  values:
