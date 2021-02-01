@@ -20,4 +20,4 @@
     3. Click `Access Cluster` -> `Launch Cloud Shell` (Step 1)
     4. Copy `oci` command to `Cloud Shell` (Step 2)
    
-   *Presentation ~3-5 min until nodes are ready* 
+   *~3-5 min until nodes are ready* 

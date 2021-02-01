@@ -29,7 +29,7 @@ kubectl get gitrepositories.source.toolkit.fluxcd.io -A
 ./flux resume source git oracle-gitops-workshop
 ```
 
-7. Observe pods
+7. Observe pods are updated
 ```
 watch kubectl get pod
 ```

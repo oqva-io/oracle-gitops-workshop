@@ -1,14 +1,18 @@
 ### Refer to values in ConfigMap
 
-1. Create values file
+1. Create `ConfigMap`
 ```
 echo "replicaCount: 2" > values.yaml
+kubectl create configmap myconfig --from-file=values.yaml --namespace=flux-system --output=yaml --dry-run > myconfig.yaml
+cat myconfig.yaml
 ```
 
-2. Create `ConfigMap`
-```
-kubectl create configmap myconfig --from-file=values.yaml --namespace=flux-system
-```
+2. Commit the ConfigMap `myconfig.yaml` to a Git repository
+   1. Open `oracle-gitops-workshop` repository in your GitHub webpage
+   2. Go to `clusters/default/flux-system/` directory
+   3. Сlick on `Add file` -> `Create new file`
+   4. Fill filename `myconfig.yaml` to `Name your file...` field
+   4. Copy & Paste `myconfig.yaml` content to text area and click on `Commit changes`
 
 3. Set watching for pods
 ```
