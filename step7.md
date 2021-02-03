@@ -64,7 +64,7 @@ flux-system   sealed-secrets         True    Release reconciliation succeeded   
 	2. Click on `Custom Resource Definitions`
 	3. Click on `Helm Release`
 	4. Choose namespace `flux-system`
-	5. Click on `kubernetes-dashboard` object
+	5. Click on `hello-kubernetes` object
     
 7. Open flux dashboard in Grafana
 	1. Go to `http://instanceIp:30001`
