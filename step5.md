@@ -20,8 +20,15 @@ watch kubectl get pod
 4. Observe pods are not updated (section 2)
 
 5. Observe latest `Fetched revision` is not changed
+
 ```
 kubectl get gitrepositories.source.toolkit.fluxcd.io -A
+```
+
+```
+NAMESPACE     NAME                     URL                                                READY   STATUS                                                              AGE
+flux-system   oracle-gitops-workshop   https://github.com/xcrezd/oracle-gitops-workshop   True    Fetched revision: master/ce3cfabe028563a439c1ccde90be94fb7a9eb8ed   95s
+
 ```
 
 6. Resume reconcile
@@ -29,9 +36,21 @@ kubectl get gitrepositories.source.toolkit.fluxcd.io -A
 ./flux resume source git oracle-gitops-workshop
 ```
 
-7. Observe pods are updated
+7. Observe latest `Fetched revision` is changed
+
+```
+kubectl get gitrepositories.source.toolkit.fluxcd.io -A
+```
+
+```
+NAMESPACE     NAME                     URL                                                READY   STATUS                                                              AGE
+flux-system   oracle-gitops-workshop   https://github.com/xcrezd/oracle-gitops-workshop   True    Fetched revision: master/572ca3db934c9f131eb37aa3dd2b4cfa3aefb9c7   95s
+
+```
+
+8. Observe pods are updated
 ```
 watch kubectl get pod
 ```
 
-8. Observe the update via Web at `http://instanceIp:30002`
+9. Observe the update via Web at `http://instanceIp:30002`

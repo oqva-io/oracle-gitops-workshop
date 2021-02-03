@@ -19,3 +19,7 @@ GitOps is a new paradigm of implementing CD (continuous delivery) for cloud-nati
 9. Extra: [Sealed Secrets](step9.md)
 
 10. [Delete all resources](./delete.md)
+
+
+
+Note: Some of examples and texts partialy taken from flux documentation website

@@ -10,7 +10,7 @@ watch kubectl get pod
     2. Go to `clusters/default/flux-system/hello-kubernetes.yaml` file
     3. Сlick on pencil to edit the file 
     4. Under the `values` section add new `message` parameter and click on `Commit changes`
-    5. Observe the `Latest commit` hash value
+    5. Observe and remember the `Latest commit` hash value
 ```
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -33,17 +33,49 @@ spec:
 ```
        
 3. What changed?
+
     1. Go back to CloudShell and see pods are updated
-    2. Observe flux reconcile git repository to the latest commit
+
+    2. Notice that Flux is reconciled the git repository to the latest commit
     ```
     kubectl get gitrepositories.source.toolkit.fluxcd.io -A
+
     ```
-    2. Observe `kustomize` updated to the latest git commit
+
+    ```
+    NAMESPACE     NAME                     URL                                                READY   STATUS                                                              AGE
+flux-system   oracle-gitops-workshop   https://github.com/xcrezd/oracle-gitops-workshop   True    Fetched revision: master/ce3cfabe028563a439c1ccde90be94fb7a9eb8ed   95s
+
+    ```
+
+    3. Motice that `kustomize` updated to the latest git commit
     ```
     kubectl get kustomizations.kustomize.toolkit.fluxcd.io -A
     ```
-    3. Observe helm release status
+
+    ```
+    NAMESPACE     NAME                     READY   STATUS                                                              AGE
+    flux-system   oracle-gitops-workshop   True    Applied revision: master/ce3cfabe028563a439c1ccde90be94fb7a9eb8ed   2m51s
+    ```
+
+    4. Notice helm events updated
     ```
     kubectl describe helmreleases.helm.toolkit.fluxcd.io hello-kubernetes -n flux-system
     ```
-    4. Observe the update via Web at `http://instanceIp:30002`
+
+    ```
+    Status:
+      Conditions:
+        Last Transition Time:          2021-02-03T08:13:42Z
+        Message:                       Release reconciliation succeeded
+        Reason:                        ReconciliationSucceeded
+        Status:                        True
+        Type:                          Ready
+        Last Transition Time:          2021-02-03T08:13:42Z
+        Message:                       Helm upgrade succeeded
+        Reason:                        UpgradeSucceeded
+        Status:                        True
+        Type:                          Released
+    ```
+
+    5. Observe the update via Web at `http://instanceIp:30002`

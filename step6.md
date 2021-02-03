@@ -1,5 +1,19 @@
 ### Refer to values in ConfigMap
 
+It is possible to define a list of ConfigMap and Secret resources from which to take values. The values are merged in the order given, with the later values overwriting earlier. These values always have a lower priority than the values inlined in the HelmRelease via the spec.values parameter.
+
+```
+spec:
+  valuesFrom:
+  - kind: ConfigMap
+    name: prod-env-values
+    valuesKey: values-prod.yaml
+  - kind: Secret
+    name: prod-tls-values
+    valuesKey: crt
+    targetPath: tls.crt
+```
+
 1. Create `ConfigMap`
 ```
 echo "replicaCount: 2" > values.yaml
